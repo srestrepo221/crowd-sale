@@ -14,10 +14,17 @@ contract Crowdsale {
 	event Buy(uint256 amount, address buyer);
 	
 	// Need Address
-	constructor(Token _token, uint256 _price, uint256 _maxTokens){
+	constructor(Token _token, uint256 _price, uint256 _maxTokens)
+	{
 		token = _token;
 		price = _price;
 		maxTokens = _maxTokens;
+	}
+
+	receive() external payable 
+	{
+		uint256 amount = msg.value / price;
+		buyTokens(amount * 1e18);
 	}
 
 	function buyTokens(uint256 _amount) public payable {
