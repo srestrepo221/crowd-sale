@@ -9,7 +9,7 @@ const hre = require("hardhat");
 async function main() {
   const NAME = 'Green Bros'
   const SYMBOL = 'GB'
-  const MAX_SUPPLY = '21000000000'
+  const MAX_SUPPLY = '21000000'
   const PRICE = ethers.utils.parseUnits('0.025', 'ether')
 
   // Deploy Token
