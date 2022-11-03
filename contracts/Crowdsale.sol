@@ -45,6 +45,11 @@ contract Crowdsale {
 		price = _price;
 	}
 
+	/*function updatePrice(uint256 _price) public onlyOwner
+	{
+		price = _price 
+	}
+	*/
 	modifier onlyOwner() {
 		require(msg.sender == owner, 'caller is not the owner');
 		_;
