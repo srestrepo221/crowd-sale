@@ -6,5 +6,13 @@
         "crowdsale": {
             "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
         }
-    }
+    },
+    "5": {
+        "token": {
+            "address": "0x07Edeecd4DD8ed5B249e4cd10c0f847720c7007A"
+        },
+        "crowdsale": {
+            "address": "0x6B36fD3D3FC04987C3A54221bcF7f2f28A9CfB94"
+        }
+    },
 }
