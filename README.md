@@ -1,6 +1,6 @@
-# Green Bros (GB) Crowdsale ICO
+# Green-Bros (GB)Crowdsale ICO
 
-Try running some of the following tasks:
+Try running some of the following commands:
 
 ```shell
 npx hardhat test
