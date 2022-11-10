@@ -9,6 +9,7 @@ import Info from './Info';
 import Progress from './Progress';
 import Loading from './Loading';
 
+
 // ABIs
 import TOKEN_ABI from '../abis/Token.json'
 import CROWDSALE_ABI from '../abis/Crowdsale.json'
@@ -75,7 +76,6 @@ function App() {
   return(
     <Container>
       <Navigation />
-
       <h1 className='my-4 text-center'>Introducing GB Token!</h1>
 
       {isLoading ? (
