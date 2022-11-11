@@ -24,12 +24,19 @@ describe('Crowdsale', () => {
     deployer = accounts[0]
     user1 = accounts[1]
 
+    const ALLOW_MINT_ON = Date.now().toString().slice(0,10) // Now
+
+
+    //crowdsale = await Crowdsale.deploy(token.address, ether(1), '2100000')
+
     // Deploy Crowdsale
-    crowdsale = await Crowdsale.deploy(token.address, ether(1), '2100000')
+crowdsale = await Crowdsale.deploy(token.address, ether(1), '2100000', ALLOW_MINT_ON)
 
     // Send tokens to crowdsale
     let transaction = await token.connect(deployer).transfer(crowdsale.address, tokens(2100000))
     await transaction.wait()
+
+    await crowdsale.addToWhiteList([user1.address])
   })
 
   describe('Deployment', () => {
@@ -49,16 +56,21 @@ describe('Crowdsale', () => {
 
   describe('Buying Tokens', () => {
     let transaction, result
-    let amount = tokens(10)
+    let amount = tokens(25)
 
     describe('Success', () => {
+      //const ALLOW_MINT_ON = Date.now().toString().slice(0,10) // Now
+
       beforeEach(async () => {
-        transaction = await crowdsale.connect(user1).buyTokens(amount, { value: ether(10) })
+        //const Crowdsale = await ethers.getContractFactory('Crowdsale')
+        //crowdsale = await Crowdsale.deploy(token.address, ether(1), '2100000', ALLOW_MINT_ON)
+
+        transaction = await crowdsale.connect(user1).buyTokens(amount, { value: ether(25) })
         result = await transaction.wait()
       })
 
       it('transfers tokens', async () => {
-        expect(await token.balanceOf(crowdsale.address)).to.equal(tokens(2099990))
+        expect(await token.balanceOf(crowdsale.address)).to.equal(tokens(2099975))
         expect(await token.balanceOf(user1.address)).to.equal(amount)
       })
 
@@ -88,7 +100,7 @@ describe('Crowdsale', () => {
 
   describe('Sending ETH', () => {
     let transaction, result
-    let amount = ether(10)
+    let amount = ether(25)
 
     describe('Success', () => {
 
@@ -135,8 +147,8 @@ describe('Crowdsale', () => {
 
   describe('Finalizing Sale', () => {
     let transaction, result
-    let amount = tokens(10)
-    let value = ether(10)
+    let amount = tokens(25)
+    let value = ether(25)
 
     describe('Success', () => {
       beforeEach(async () => {
@@ -149,7 +161,7 @@ describe('Crowdsale', () => {
 
       it('transfers remaining tokens to owner', async () => {
         expect(await token.balanceOf(crowdsale.address)).to.equal(0)
-        expect(await token.balanceOf(deployer.address)).to.equal(tokens(2099990))
+        expect(await token.balanceOf(deployer.address)).to.equal(tokens(2099975))
       })
 
       it('transfers ETH balance to owner', async () => {

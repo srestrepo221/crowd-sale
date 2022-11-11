@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { ethers } from 'ethers'
+import Countdown from 'react-countdown'
 
 // Components
 import Navigation from './Navigation';
@@ -8,6 +9,7 @@ import Buy from './Buy';
 import Info from './Info';
 import Progress from './Progress';
 import Loading from './Loading';
+
 
 
 // ABIs
@@ -20,6 +22,8 @@ import config from '../config.json';
 function App() {
   const [provider, setProvider] = useState(null)
   const [crowdsale, setCrowdsale] = useState(null)
+
+  const [revealTime, setRevealTime] = useState(0)
 
   const [account, setAccount] = useState(null)
   const [accountBalance, setAccountBalance] = useState(0)
@@ -47,6 +51,10 @@ function App() {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
     const account = ethers.utils.getAddress(accounts[0])
     setAccount(account)
+
+    // Fetch countdown
+    const allowMintingOn = await crowdsale.allowMintingOn()
+    setRevealTime(allowMintingOn.toString() + '000')
 
     // Fetch account balance
     const accountBalance = ethers.utils.formatUnits(await token.balanceOf(account), 18)
@@ -82,6 +90,7 @@ function App() {
         <Loading />
       ) : (
         <>
+          < Countdown date={parseInt(revealTime)} className='h2' />
           <p className='text-center'><strong>Current Price:</strong> {price} ETH</p>
           <Buy provider={provider} price={price} crowdsale={crowdsale} setIsLoading={setIsLoading} />
           <Progress maxTokens={maxTokens} tokensSold={tokensSold} />
