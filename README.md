@@ -15,6 +15,8 @@ Please make sure you have Goerli test Ether in your wallet.
 
 The project has been deployed to fleek.co.
 
+https://rapid-bird-0232.on.fleek.co/
+
 This project comes with a sample contract, a test for that contract, and a script that deploys that contract.
 
 
