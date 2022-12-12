@@ -11,7 +11,8 @@ async function main() {
   const SYMBOL = 'GB'
   const MAX_SUPPLY = '2100000'
   const PRICE = ethers.utils.parseUnits('0.025', 'ether')
-  const ICO_MINT_DATE = (Date.now() + 60000).toString().slice(0, 10)
+  // const ICO_MINT_DATE = (Date.now() + (10*60000)).toString().slice(0, 10)
+  const ICO_MINT_DATE = (Date.now() + 120000).toString().slice(0, 10)
 
   // Deploy Token
   const Token = await hre.ethers.getContractFactory('Token')
