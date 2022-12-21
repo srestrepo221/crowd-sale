@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { ethers } from 'ethers'
-import Countdown from 'react-countdown'
 
 // Components
 import Navigation from './Navigation';
@@ -23,7 +22,7 @@ function App() {
   const [provider, setProvider] = useState(null)
   const [crowdsale, setCrowdsale] = useState(null)
 
-  const [revealTime, setRevealTime] = useState(0)
+  // const [revealTime, setRevealTime] = useState(0)
 
   const [account, setAccount] = useState(null)
   const [accountBalance, setAccountBalance] = useState(0)
@@ -39,7 +38,6 @@ function App() {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     setProvider(provider)
 
-
     const { chainId } = await provider.getNetwork() 
 
     // Initiate contracts
@@ -52,9 +50,10 @@ function App() {
     const account = ethers.utils.getAddress(accounts[0])
     setAccount(account)
 
-    // Fetch countdown
+    /* Fetch countdown
     const allowMintingOn = await crowdsale.allowMintingOn()
     setRevealTime(allowMintingOn.toString() + '000')
+    */
 
     // Fetch account balance
     const accountBalance = ethers.utils.formatUnits(await token.balanceOf(account), 18)
@@ -75,35 +74,35 @@ function App() {
     setIsLoading(false)
   }
 
-  useEffect(() => {
-    if (isLoading) {
-      loadBlockchainData()
-    }
-  }, [isLoading]);
+    useEffect(() => {
+      if (isLoading) {
+        loadBlockchainData()
+      }
+    }, [isLoading]);
 
-  return(
-    <Container>
-      <Navigation />
-      <h1 className='my-4 text-center'>Introducing GB Token!</h1>
+    return(
+      <Container>
+        <Navigation />
 
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          < Countdown date={parseInt(revealTime)} className='h2' />
-          <p className='text-center'><strong>Current Price:</strong> {price} ETH</p>
-          <Buy provider={provider} price={price} crowdsale={crowdsale} setIsLoading={setIsLoading} />
-          <Progress maxTokens={maxTokens} tokensSold={tokensSold} />
-        </>
-      )}
+        <h1 className='my-4 text-center'>Introducing GB Token!</h1>
 
-      <hr />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <p className='text-center'><strong>Current Price:</strong> {price} ETH</p>
+            <Buy provider={provider} price={price} crowdsale={crowdsale} setIsLoading={setIsLoading} />
+            <Progress maxTokens={maxTokens} tokensSold={tokensSold} />
+          </>
+        )}
 
-      {account && (
-        <Info account={account} accountBalance={accountBalance} />
-      )}
-    </Container>
-  )
-}
+        <hr />
+
+        {account && (
+          <Info account={account} accountBalance={accountBalance} />
+        )}
+      </Container>
+    )
+  }
 
 export default App;

@@ -24,19 +24,19 @@ describe('Crowdsale', () => {
     deployer = accounts[0]
     user1 = accounts[1]
 
-    const ALLOW_MINT_ON = Date.now().toString().slice(0,10) // Now
+    //const ALLOW_MINT_ON = Date.now().toString().slice(0,10) // Now
 
 
-    //crowdsale = await Crowdsale.deploy(token.address, ether(1), '2100000')
+    crowdsale = await Crowdsale.deploy(token.address, ether(1), '2100000')
 
-    // Deploy Crowdsale
-crowdsale = await Crowdsale.deploy(token.address, ether(1), '2100000', ALLOW_MINT_ON)
+    // Deploy Crowdsale with minting restriction
+    // crowdsale = await Crowdsale.deploy(token.address, ether(1), '2100000', ALLOW_MINT_ON)
 
     // Send tokens to crowdsale
     let transaction = await token.connect(deployer).transfer(crowdsale.address, tokens(2100000))
     await transaction.wait()
 
-    await crowdsale.addToWhiteList([user1.address])
+    // await crowdsale.addToWhiteList([user1.address])
   })
 
   describe('Deployment', () => {

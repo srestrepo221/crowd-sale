@@ -10,7 +10,7 @@ contract Crowdsale {
 	uint256 public price;
 	uint256 public maxTokens;
 	uint256 public tokensSold;
-	uint256 public allowMintingOn; 
+//  uint256 public allowMintingOn; 
 
 	event Buy(uint256 amount, address buyer);
 	event Finalize(uint256 tokensSold, uint256 ethRaised);
@@ -18,21 +18,21 @@ contract Crowdsale {
 	constructor(
 		Token _token,
 		uint256 _price,
-		uint256 _maxTokens,
-		uint256 _allowMintingOn
+		uint256 _maxTokens
+	//	uint256 _allowMintingOn
 	)
 	{
 		owner = msg.sender;
 		token = _token;
 		price = _price;
 		maxTokens = _maxTokens;
-		allowMintingOn = _allowMintingOn;
+	//	allowMintingOn = _allowMintingOn;
 	}
 
-	mapping(address => bool) public whitelist;
+	//mapping(address => bool) public whitelist;
 
 	// Add to whitelist
-	function addToWhiteList(address[] calldata toAddAddresses)
+	/* function addToWhiteList(address[] calldata toAddAddresses)
 	external onlyOwner
 	{
 		for(uint i = 0; i < toAddAddresses.length; i++){
@@ -47,6 +47,7 @@ contract Crowdsale {
             delete whitelist[toRemoveAddresses[i]];
         }
     }
+    */
 
 	modifier onlyOwner() {
 		require(msg.sender == owner, 'caller is not the owner');
@@ -61,14 +62,13 @@ contract Crowdsale {
 
 	function buyTokens(uint256 _amount) public payable {
 		// Allow purchase after specified time
-		require(block.timestamp >= allowMintingOn);
+		// require(block.timestamp >= allowMintingOn);
 		
 		// Allow only whitelist to purchase
-		require(whitelist[msg.sender], "Not in whitelist");
-
+		// require(whitelist[msg.sender], "Not in whitelist");
 
 		// Minimum contribution of tokens
-		require( _amount >= (25 * 1e18),"Must contribute 25 eth" ); 
+		require( _amount >= (25 * 1e18),"Must contribute 25 eth" );
 
 		// Maximum contribution of tokens
 		require( _amount <= (25000 * 1e18));
@@ -101,10 +101,4 @@ contract Crowdsale {
 
 	emit Finalize(tokensSold, value); 
 	}
-
-
 }
-
-
-
-
