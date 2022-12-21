@@ -6,10 +6,8 @@ Try running some of the following commands:
 npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
-npx	deploy/Localhost
-npx seed/Localhost
+npm	run deploy/Localhost
 ```
-
 Connect your Metamask wallet and use the Goerli testnet to purchase GB tokens with Goerli Ether.
 
 Please make sure you have Goerli test Ether in your wallet.

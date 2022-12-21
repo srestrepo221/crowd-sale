@@ -2,7 +2,6 @@ import Navbar from 'react-bootstrap/Navbar';
 
 import logo from '../greenbros.png';
 
-
 const Navigation = () => {
   return(
     <Navbar>
@@ -20,3 +19,4 @@ const Navigation = () => {
 }
 
 export default Navigation;
+
