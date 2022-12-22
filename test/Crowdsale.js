@@ -26,7 +26,6 @@ describe('Crowdsale', () => {
 
     //const ALLOW_MINT_ON = Date.now().toString().slice(0,10) // Now
 
-
     crowdsale = await Crowdsale.deploy(token.address, ether(1), '2100000')
 
     // Deploy Crowdsale with minting restriction
@@ -187,17 +186,4 @@ describe('Crowdsale', () => {
   })
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
