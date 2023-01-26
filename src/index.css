@@ -8,10 +8,11 @@ body {
 
   height: 100vh;
   background-image: repeating-linear-gradient(45deg, rgb(15,252,7) 0%, rgb(15,252,7) 25%, rgb(112, 255, 116) 25%,rgb(112, 255, 116) 50%);
-  
+  .font-color-dark { color: "#000" !important; }
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
