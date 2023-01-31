@@ -19,7 +19,7 @@ Try running some of the following commands:
 
 ### Run deployment script
 In a separate terminal execute:
-`$ npm	run deploy/localhost`
+`$ npm run deploy/localhost`
 
 ### Start frontend
 `$ npm run start`
