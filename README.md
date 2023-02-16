@@ -24,6 +24,8 @@ In a separate terminal execute:
 
 Connect your Metamask wallet and use the Goerli testnet to purchase GB tokens with Goerli Ether.
 
+https://goerlifaucet.com/
+
 Please make sure you have Goerli test Ether in your wallet.
 
 The project has been deployed to fleek.co.
