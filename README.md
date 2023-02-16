@@ -6,8 +6,6 @@
 - [Hardhat](https://hardhat.org/) (Development Framework)
 - [Ethers.js](https://docs.ethers.io/v5/) (Blockchain Interaction)
 - [React.js](https://reactjs.org/) (Frontend Framework)
-- [Ipfs] (Metadata storage)
-- [React] routers (Navigational components)
 
 Try running some of the following commands:
 
